@@ -4,6 +4,7 @@ require_relative '../lib/distance_to_point'
 describe GuestList do
   let(:wrong_formatted_file) { 'spec/fixtures/non_json_customers.json' }
   let(:correct_file) { 'spec/fixtures/customers.json' }
+  let(:not_valid_customers) { 'spec/fixtures/not_valid_customers.json' }
 
   describe 'load_customers' do
     it 'should return argument error if file was not provided' do
@@ -28,6 +29,13 @@ describe GuestList do
           { "latitude"=>"52.986375", "user_id"=>3, "name"=>"Jack", "longitude"=>"-6.043701" },
           { "latitude"=>"53.807778", "user_id"=>28, "name"=>"Charlie", "longitude"=>"-7.714444" },
           { "latitude"=>"53.1229599", "user_id"=>6, "name"=>"Theresa", "longitude"=>"-6.2705202" }
+        ])
+    end
+
+    it 'should load only the customers with correct headers' do
+      expect( described_class.new.send(:load_customers, not_valid_customers) ).to eq(
+        [
+          { "latitude"=>"52.986375", "user_id"=>3, "name"=>"Jack", "longitude"=>"-6.043701" }          
         ])
     end
   end

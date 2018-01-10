@@ -2,6 +2,7 @@ require 'json'
 
 class GuestList
   DISTANCE_LIMIT = 100.0
+  CUSTOMER_HEADER = %w(user_id name latitude longitude)
 
   def collect(file)
     load_customers(file)
@@ -20,10 +21,17 @@ class GuestList
       raise ArgumentError.new("Please provide customers file")
     else
       File.open(file).each do |line|
-        @customers << JSON.parse(line)
+        potential_customer = JSON.parse(line)
+        if is_valid_customer?(potential_customer)
+          @customers << potential_customer
+        end
       end
     end
     @customers
+  end
+
+  def is_valid_customer?(customer_line)
+    CUSTOMER_HEADER & customer_line.keys == CUSTOMER_HEADER
   end
 
   def select_guests
