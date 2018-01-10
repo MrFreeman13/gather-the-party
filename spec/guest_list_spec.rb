@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe GuestList do
   let(:wrong_formatted_file) { 'spec/fixtures/non_json_customers.json' }
   let(:correct_file) { 'spec/fixtures/customers.json' }
