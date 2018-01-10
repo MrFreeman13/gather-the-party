@@ -52,6 +52,10 @@ describe GuestList do
   end
 
   describe 'collect' do
-    it 'should collect all matched guests'
+    it 'should collect all matched guests' do
+      expect(described_class.new.collect(correct_file)).to eq(
+        [[3, "Jack"], [6, "Theresa"]]
+      )
+    end
   end
 end
