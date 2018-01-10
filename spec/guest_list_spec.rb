@@ -26,7 +26,8 @@ describe GuestList do
       expect( described_class.new.send(:load_customers, correct_file) ).to eq(
         [
           { "latitude"=>"52.986375", "user_id"=>3, "name"=>"Jack", "longitude"=>"-6.043701" },
-          { "latitude"=>"53.807778", "user_id"=>28, "name"=>"Charlie", "longitude"=>"-7.714444"},
+          { "latitude"=>"53.807778", "user_id"=>28, "name"=>"Charlie", "longitude"=>"-7.714444" },
+          { "latitude"=>"53.1229599", "user_id"=>6, "name"=>"Theresa", "longitude"=>"-6.2705202" }
         ])
     end
   end
@@ -36,7 +37,7 @@ describe GuestList do
       guest_list_obj = described_class.new
       guest_list_obj.send(:load_customers, correct_file)
 
-      expect(guest_list_obj.send(:select_guests)).to eq({ 3=>"Jack" })
+      expect(guest_list_obj.send(:select_guests)).to eq({ 3=>"Jack", 6=>"Theresa" })
     end
   end
 
