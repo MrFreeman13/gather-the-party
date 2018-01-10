@@ -1,4 +1,5 @@
 require_relative '../lib/guest_list'
+require_relative '../lib/distance_to_point'
 
 describe GuestList do
   let(:wrong_formatted_file) { 'spec/fixtures/non_json_customers.json' }
@@ -24,15 +25,19 @@ describe GuestList do
     it 'should load customers from correct file' do
       expect( described_class.new.send(:load_customers, correct_file) ).to eq(
         [
-          { "latitude"=>"52.3191841", "user_id"=>3, "name"=>"Jack", "longitude"=>"-8.5072391" },
+          { "latitude"=>"52.986375", "user_id"=>3, "name"=>"Jack", "longitude"=>"-6.043701" },
           { "latitude"=>"53.807778", "user_id"=>28, "name"=>"Charlie", "longitude"=>"-7.714444"},
         ])
     end
   end
 
   describe 'select_guests' do
-    it 'should select guests which are within distance limit'
-    it 'should not select guests which are too far'
+    it 'should select only the guests which are within distance limit' do
+      guest_list_obj = described_class.new
+      guest_list_obj.send(:load_customers, correct_file)
+
+      expect(guest_list_obj.send(:select_guests)).to eq({ 3=>"Jack" })
+    end
   end
 
   describe 'sort asc' do
