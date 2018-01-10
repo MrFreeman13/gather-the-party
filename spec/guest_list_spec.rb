@@ -1,5 +1,4 @@
-require_relative '../lib/guest_list'
-require_relative '../lib/distance_to_point'
+require 'spec_helper'
 
 describe GuestList do
   let(:wrong_formatted_file) { 'spec/fixtures/non_json_customers.json' }
@@ -35,7 +34,7 @@ describe GuestList do
     it 'should load only the customers with correct headers' do
       expect( described_class.new.send(:load_customers, not_valid_customers) ).to eq(
         [
-          { "latitude"=>"52.986375", "user_id"=>3, "name"=>"Jack", "longitude"=>"-6.043701" }          
+          { "latitude"=>"52.986375", "user_id"=>3, "name"=>"Jack", "longitude"=>"-6.043701" }
         ])
     end
   end

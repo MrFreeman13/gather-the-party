@@ -1,5 +1,3 @@
-require_relative '../lib/distance_to_point'
-
 describe DistanceToPoint do
   describe 'initialize' do
     it 'should return argument error if point latitude was not float' do
