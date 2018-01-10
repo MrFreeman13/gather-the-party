@@ -5,4 +5,4 @@ Use this script to get sorted list of guests which are not far from you
 
 # Running
 
-`>bin/gather_the_party guests.txt`
+`>bin/gather_the_party customers.json`
