@@ -24,7 +24,7 @@ class GuestList
         @customers << JSON.parse(line)
       end
     end
-
+    @customers
   end
 
   def select_guests
