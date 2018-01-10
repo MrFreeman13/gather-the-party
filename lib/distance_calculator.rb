@@ -1,3 +1,0 @@
-class DistanceCalculator
-
-end

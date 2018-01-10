@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require './lib/gather_the_party'
 require './lib/guest_list'
-require './lib/distance_calculator'
+require './lib/distance_to_point'
 
 GatherTheParty.new.run ARGV.first
