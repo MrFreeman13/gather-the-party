@@ -40,8 +40,14 @@ describe GuestList do
     end
   end
 
-  describe 'sort asc' do
-    it 'should sort guest list ascending by id'
+  describe 'sort_asc' do
+    it 'should sort guest list ascending by id' do
+      unsorted_guest_list = { 10 => "Nick", 2 => "Kate", 3 => "Jack" }
+
+      expect(described_class.new.send(:sort_asc, unsorted_guest_list)).to eq(
+        [[2, "Kate"], [3, "Jack"], [10, "Nick"]]
+      )
+    end
   end
 
   describe 'collect' do
